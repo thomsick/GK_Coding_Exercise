@@ -1,9 +1,10 @@
-import Enums.Bills;
-import Enums.CoinType;
-import Enums.Coins;
-import Enums.CoinsModified;
+import Money.Bills;
+import Money.Coin;
+import Money.CoinSets;
+
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -46,18 +47,18 @@ public class Main {
             }
         }
 
-        CoinType[] coinValues;
+        List<Coin> coins;
         if (coinModifierOn){
-            coinValues = CoinsModified.values();
+            coins = CoinSets.ALL_COINS;
         } else {
-            coinValues = Coins.values();
+            coins = CoinSets.MODIFIED_COINS;
         }
 
         System.out.println("COINS:");
-        for (CoinType coin : coinValues){
-            BigDecimal billValue = coin.getValue();
+        for (Coin coin : coins){
+            BigDecimal billValue = coin.value();
             if (rest.compareTo(billValue) >= 0){
-                System.out.println(coin.getText() + " coins: " + rest.divideToIntegralValue(billValue).intValue());
+                System.out.println(coin.text() + " coins: " + rest.divideToIntegralValue(billValue).intValue());
                 rest = rest.remainder(billValue);
             }
         }

@@ -1,4 +1,4 @@
-package Enums;
+package Money;
 
 import java.math.BigDecimal;
 
