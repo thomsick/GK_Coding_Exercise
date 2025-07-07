@@ -1,6 +1,5 @@
-import Money.Bills;
-import Money.Coin;
-import Money.CoinSets;
+import euro.Euro;
+import euro.EuroSets;
 
 
 import java.math.BigDecimal;
@@ -39,26 +38,26 @@ public class Main {
         BigDecimal rest = amountPayed.subtract(amountToPay);
 
         System.out.println("BILLS:");
-        for (Bills bill : Bills.values()){
-            BigDecimal billValue = bill.getValue();
+        for (Euro euro : EuroSets.ALL_BILLS){
+            BigDecimal billValue = euro.value();
             if (rest.compareTo(billValue) >= 0){
-                System.out.println(bill.getText() + " bills: " + rest.divideToIntegralValue(billValue).intValue());
+                System.out.println(euro.text() + " bills: " + rest.divideToIntegralValue(billValue).intValue());
                 rest = rest.remainder(billValue);
             }
         }
 
-        List<Coin> coins;
+        List<Euro> coins;
         if (coinModifierOn){
-            coins = CoinSets.ALL_COINS;
+            coins = EuroSets.NO1NO2_COINS;
         } else {
-            coins = CoinSets.MODIFIED_COINS;
+            coins = EuroSets.ALL_COINS;
         }
 
         System.out.println("COINS:");
-        for (Coin coin : coins){
-            BigDecimal billValue = coin.value();
+        for (Euro euro : coins){
+            BigDecimal billValue = euro.value();
             if (rest.compareTo(billValue) >= 0){
-                System.out.println(coin.text() + " coins: " + rest.divideToIntegralValue(billValue).intValue());
+                System.out.println(euro.text() + " coins: " + rest.divideToIntegralValue(billValue).intValue());
                 rest = rest.remainder(billValue);
             }
         }
