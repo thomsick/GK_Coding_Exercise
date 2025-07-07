@@ -55,10 +55,10 @@ public class Main {
 
         System.out.println("COINS:");
         for (Euro euro : coins){
-            BigDecimal billValue = euro.value();
-            if (rest.compareTo(billValue) >= 0){
-                System.out.println(euro.text() + " coins: " + rest.divideToIntegralValue(billValue).intValue());
-                rest = rest.remainder(billValue);
+            BigDecimal coinValue = euro.value();
+            if (rest.compareTo(coinValue) >= 0){
+                System.out.println(euro.text() + " coins: " + rest.divideToIntegralValue(coinValue).intValue());
+                rest = rest.remainder(coinValue);
             }
         }
     }
